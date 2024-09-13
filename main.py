@@ -25,7 +25,7 @@ def create_streamlit_app(llm, clean_txt):
     # Form layout to input URL and upload the resume
     with st.form(key="url_form"):
         url_input = st.text_input("🔗 Enter a Job Posting URL", placeholder="https://example.com/careers")
-        uploaded_file = st.file_uploader("📄 Upload your Resume as an image (jpg, jpeg, png)", type=["jpg", "jpeg", "png"])
+        uploaded_file = st.file_uploader("📄 Upload your Resume (image or pdf) (pdf, jpg, jpeg, png)", type=["pdf","jpg", "jpeg", "png"])
         submit_button = st.form_submit_button(label="🚀 Extract Jobs and Generate Email")
 
     if submit_button:
