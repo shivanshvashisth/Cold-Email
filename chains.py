@@ -50,11 +50,11 @@ class Chain:
             {resume_analysis}
             
             ### INSTRUCTION:
-            You are name mentioned in resume , a third-year student of btech cse at Graphic Era Hill Institute. 
+            You are name mentioned in resume , a x year student in y university or college take the sentence if x and y are mentioned in resume  
             Write a cold email for the Fresher position or internship whatever mentioned in job description. 
 
             In the email:
-            1. **Highlight** how your academic background and strengths align with the job requirements.
+            1. **Highlight** how your Projects ,academic background and strengths align with the job requirements.
             2. **Focus on the specific skills and experiences** that were identified from the resume analysis.
             3. **Do not include any information not present in the resume analysis.**
             4. **  can go to next line if there are too many words in a line
