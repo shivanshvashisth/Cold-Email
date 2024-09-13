@@ -44,7 +44,7 @@ def create_streamlit_app(llm, clean_txt):
                 input_prompt = """
                                You are an expert in analyzing resumes.
                                You will receive input images as a person's resume & 
-                               you will have to answer questions based on the input image.
+                               you will have to give data present in the resume.
                                """
                 resume_response = get_gemini_response(input_prompt, image_data, "Analyze this resume")
 
