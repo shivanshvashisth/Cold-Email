@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 import os
 from PyPDF2 import PdfReader
-from PIL import Image
 import google.generativeai as genai  # Ensure this is imported
 
 load_dotenv()  # Load environment variables from .env file
@@ -33,10 +32,20 @@ def get_gemini_response(input_prompt, image, extra_input):
 
 # Function to process the uploaded image (resume)
 def input_image_setup(uploaded_file):
+    file_type = uploaded_file.type
+    
     if uploaded_file is not None:
-        file_type = uploaded_file.type
+        # Read file into bytes
+        bytes_data = uploaded_file.getvalue()
 
-        if file_type == "application/pdf":
+        image_parts = [
+            {
+                "mime_type": uploaded_file.type,  # Get mime type of uploaded file
+                "data": bytes_data
+            }
+        ]
+        return image_parts
+    elif file_type == "application/pdf":
             # Handle PDF files: Extract text or convert pages to images
             pdf_reader = PdfReader(uploaded_file)
             bytes_data = b""
@@ -54,20 +63,5 @@ def input_image_setup(uploaded_file):
                 }
             ]
             return pdf_parts
-
-        elif file_type in ["image/jpeg", "image/png", "image/jpg"]:
-            # Handle image files: Convert them to raw bytes and return
-            bytes_data = uploaded_file.getvalue()
-
-            image_parts = [
-                {
-                    "mime_type": file_type,  # Get mime type of uploaded file (e.g., image/jpeg)
-                    "data": bytes_data
-                }
-            ]
-            return image_parts
-
-        else:
-            raise ValueError("Unsupported file type. Please upload a PDF or an image file.")
     else:
         raise FileNotFoundError("No file uploaded")
